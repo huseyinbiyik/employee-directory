@@ -31,7 +31,6 @@ const Employees = () => {
   const searchEmployee = (employee) => {
     setEmployees(employee);
   };
-
   console.log(employees);
 
   return (

@@ -27,8 +27,8 @@ const SearchEmployee = ({ searchEmployee }) => {
         placeholder="Search by email"
         onChange={handleChanges}
       />
-      
-      {searchEmployee(employees)}
+
+      <button onClick={() => searchEmployee(employees)}>Search</button>
     </div>
   );
 };
