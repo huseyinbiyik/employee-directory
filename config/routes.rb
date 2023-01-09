@@ -3,7 +3,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :employees
+      get 'employees', to: 'employees#index'
+      get 'employees/search', to: 'employees#search'
     end
   end
   root 'root#index'
