@@ -4,12 +4,12 @@ import Pagination from "react-paginate";
 import { Link } from "react-router-dom";
 
 const Employees = () => {
-  const [employees, setEmployees] = React.useState([]);
+  const [employees, setEmployees] = React.useState("");
   const [pageCount, setPageCount] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(0);
 
   useEffect(() => {
-    fetch(`https://reqres.in/api/users?page=${currentPage + 1}`, {
+    fetch(`http://localhost:3000/api/v1/employees?page=${currentPage + 1}`, {
       method: "GET",
     })
       .then((response) => response.json())
@@ -34,16 +34,17 @@ const Employees = () => {
         onPageChange={handlePageClick}
         forcePage={currentPage}
       />
-      {employees.map((employee) => (
-        <div key={employee.id}>
-          <Link to={`employee/${employee.employee_id}`}>
-            <p>
-              {employee.first_name} {employee.last_name}
-            </p>
-            <p>{employee.email}</p>
-          </Link>
-        </div>
-      ))}
+      //List employees with link to show page
+      <ul>
+        {employees &&
+          employees.map((employee) => (
+            <li key={employee.id}>
+              <Link to={`/employees/${employee.employee_id}`}>
+                {employee.first_name} {employee.last_name}
+              </Link>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 };

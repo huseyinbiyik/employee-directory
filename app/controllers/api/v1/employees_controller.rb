@@ -16,7 +16,7 @@ module Api
           )
         end
         @employees = Employee.all
-        render json: @employees
+        render json: { status: 200, data: @employees, total_pages: parsed_response['total_pages'] }
       end
 
       def search
