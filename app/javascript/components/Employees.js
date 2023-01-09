@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import Pagination from "react-paginate";
 import { Link } from "react-router-dom";
+import SearchEmployee from "./SearchEmployee";
 
 const Employees = () => {
   const [employees, setEmployees] = React.useState("");
@@ -27,8 +28,16 @@ const Employees = () => {
     setCurrentPage(selected);
   };
 
+  const searchEmployee = (employee) => {
+    setEmployees(employee);
+  };
+
+  console.log(employees);
+
   return (
     <div>
+      <h1>Employees</h1>
+      <SearchEmployee searchEmployee={searchEmployee} />
       <ul>
         {employees &&
           employees.map((employee) => (

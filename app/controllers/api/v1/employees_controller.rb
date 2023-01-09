@@ -50,12 +50,8 @@ module Api
             avatar: e['avatar']
           )
         end
-        @employee = Employee.find_by(email: params[:email])
-        if @employee
-          render json: { status: 200, employee: @employee }
-        else
-          render json: { status: 404, message: 'Employee not found' }
-        end
+        @employees = Employee.where('email LIKE ?', "%#{params[:email]}%")
+        render json: { status: 200, data: @employees }
       end
     end
   end
