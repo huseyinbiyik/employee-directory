@@ -29,12 +29,6 @@ const Employees = () => {
 
   return (
     <div>
-      <Pagination
-        pageCount={pageCount}
-        onPageChange={handlePageClick}
-        forcePage={currentPage}
-      />
-      //List employees with link to show page
       <ul>
         {employees &&
           employees.map((employee) => (
@@ -45,6 +39,11 @@ const Employees = () => {
             </li>
           ))}
       </ul>
+      <Pagination
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        forcePage={currentPage}
+      />
     </div>
   );
 };

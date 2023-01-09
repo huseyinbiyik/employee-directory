@@ -19,6 +19,23 @@ module Api
         render json: { status: 200, data: @employees, total_pages: parsed_response['total_pages'] }
       end
 
+      def show
+        response = HTTParty.get("https://reqres.in/api/users/#{params[:id]}")
+        response_body = response.body
+        parsed_response = JSON.parse(response_body)
+        Employee.delete_all
+        parsed_response = parsed_response['data']
+        @employee = Employee.create(
+          employee_id: parsed_response['id'],
+          first_name: parsed_response['first_name'],
+          last_name: parsed_response['last_name'],
+          email: parsed_response['email'],
+          avatar: parsed_response['avatar']
+        )
+
+        render json: { status: 200, employee: @employee }
+      end
+
       def search
         response = HTTParty.get('https://reqres.in/api/users?per_page=12')
         response_body = response.body

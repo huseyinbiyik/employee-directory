@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'employees', to: 'employees#index'
       get 'employees/search', to: 'employees#search'
+      get 'employees/:id', to: 'employees#show'
     end
   end
   root 'root#index'
